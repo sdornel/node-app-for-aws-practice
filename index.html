@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node application for EC2</title>
+</head>
+<body>
+    <h1>Node application for EC2</h1>
+    
+    <form id="dataForm">
+        <label for="dataInput">Enter data:</label><br>
+        <input type="text" id="dataInput" name="dataInput"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const inputData = document.getElementById('dataInput').value;
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '/api/data', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    document.getElementById('response').textContent = xhr.responseText;
+                }
+            };
+
+            xhr.onerror = () => {
+                console.error('Request failed');
+            };
+
+            xhr.send(JSON.stringify({ data: inputData }));
+        }
+
+        // Attach form submission handler to the form
+        document.getElementById('dataForm').addEventListener('submit', handleSubmit);
+    </script>
+</body>
+</html>
