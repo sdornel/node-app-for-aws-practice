@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname));
+
 app.post('/api/data', (req, res) => {
     const inputData = req.body.data;
     console.log('Received data:', inputData);
@@ -13,7 +15,7 @@ app.post('/api/data', (req, res) => {
     res.send(`Received data: ${inputData}`);
 });
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     console.log('got here');
 })
 
