@@ -17,6 +17,7 @@ app.post('/api/data', (req, res) => {
 
 app.get('/api', (req, res) => {
     console.log('got here');
+    res.send('Got here!');
 })
 
 app.listen(PORT, () => {
