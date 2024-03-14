@@ -6,12 +6,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-// Handle POST requests to /api/data
 app.post('/api/data', (req, res) => {
     const inputData = req.body.data;
     console.log('Received data:', inputData);
 
-    // Process the data and send a response
     res.send(`Received data: ${inputData}`);
 });
 
